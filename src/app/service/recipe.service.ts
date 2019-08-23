@@ -13,7 +13,6 @@ export class RecipeService {
 
   @Output() recipes=new EventEmitter<Recipe[]>();
   
-  
 
   constructor() {
     this.myDb = new NgxIndexedDB('recipeBookDb', 1);
@@ -28,11 +27,15 @@ export class RecipeService {
     this.myDb.openDatabase(1, evt => {
       let objectStore = evt.currentTarget.result.createObjectStore('recipe',
       { keyPath: 'id', autoIncrement: true });
-      objectStore.createIndex('name', 'name', { unique: false });
-      objectStore.createIndex('description', 'description', { unique: false });
+      objectStore.createIndex('name', 'name', { unique: true });
+      objectStore.createIndex('direction', 'direction', { unique: false });
+      objectStore.createIndex('imageUrl', 'imageUrl', { unique: false });
+      objectStore.createIndex('thumbImageUrl', 'thumbImageUrl', { unique: false });
+      objectStore.createIndex('cookingTime', 'cookingTime', { unique: false });
+      objectStore.createIndex('serves', 'serves', { unique: false });
         }).then(
         x=>console.log("Database is created!")
-        ).catch(error=>console.log('Error in creating database: ' + error));
+        ).catch(error=>console.warn('Error in creating database: ' + error));
   }
 
   deleteDb(){
@@ -55,10 +58,9 @@ export class RecipeService {
     })
   }
 
-  addRecipe(){
+  addRecipe(recipe:Recipe){
     this.myDb.openDatabase(1).then(x=>{
-      //this.myDb.add('recipe',JSON.stringify(recipe));
-      this.myDb.add('recipe',{name:'mehdi',description:'tozih'});
+      this.myDb.add('recipe',recipe);
     });
   }
 }

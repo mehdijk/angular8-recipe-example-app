@@ -1,1 +1,63 @@
-<p>add-recipe works!</p>
+<div class="container">
+<div class="row">
+<div class="col-md-8 offset-md-2">
+    <h2>Add a recipe</h2>
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()" >
+    <div class="form-group">
+        <label for="name">Name*</label>
+        <input type="text" formControlName="name" class="form-control" id="name"  name="name" required>
+        <div *ngIf="name.invalid && (name.dirty || name.touched || isSubmitted)" class="alert alert-danger">
+            <div *ngIf="name.errors.required">
+                Name is required.
+            </div>
+            <div *ngIf="name.errors.maxlength">
+                Name must be less than 80 characters long.
+            </div>
+        </div>     
+
+        <label for="direction">Direction*</label>
+        <textarea formControlName="direction" class="form-control" rows="5" id="direction"  name="direction" required></textarea>
+        <div *ngIf="direction.invalid && (direction.dirty || direction.touched || isSubmitted)" class="alert alert-danger">
+            <div *ngIf="name.errors.required">
+                Direction is required.
+            </div>
+            <div *ngIf="direction.errors.maxlength">
+                Direction must be less than 2000 characters long.
+            </div>
+        </div> 
+        
+        <label for="serves">Serves for</label>
+        <select formControlName="serves" class="form-control" id="serves">
+            <option>1</option>
+            <option selected>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+        </select>
+
+        <label for="cookingTime">Cooking time </label>
+        <input formControlName="cookingTime" type="text" 
+        class="form-control" id="cookingTime"
+        maxlength="3" inputmode="numeric" pattern="[0-9]*" digitOnly >
+        <div *ngIf="cookingTime.invalid && (cookingTime.dirty || cookingTime.touched)" class="alert alert-danger">
+            <div *ngIf="cookingTime.errors.min || cookingTime.errors.max || cookingTime.errors.pattern">
+                Cooking time should be a number between 1 and 600.
+            </div>
+        </div> 
+ 
+        <label for="imageUrl">Image URL</label>
+        <input type="url" formControlName="imageUrl" class="form-control" id="imageUrl" name="imageUrl" >
+
+        <label for="thumbImageUrl">Thumb image URL</label>
+        <input type="url" formControlName="thumbImageUrl" class="form-control" id="thumbImageUrl"  name="thumbImageUrl" >
+    </div> 
+    <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+</div>
+</div>
+</div>

@@ -7,6 +7,8 @@ import { MenuComponent } from './menu/menu.component';
 import { NgxIndexedDB } from 'ngx-indexed-db';
 import { RecipesComponent } from './recipes/recipes.component';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -14,13 +16,14 @@ import { AddRecipeComponent } from './add-recipe/add-recipe.component';
     AppComponent,
     MenuComponent,
     RecipesComponent,
-    AddRecipeComponent
+    AddRecipeComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-  //  NgxIndexedDB,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

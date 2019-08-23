@@ -1,6 +1,9 @@
 export class Recipe {
-    id:number;
+    id?:number;
     name:string;
-    image:object;
-    description:string;
+    direction:string;
+    imageUrl:string;
+    thumbImageUrl:string;
+    cookingTime:number;
+    serves:number;
 }
