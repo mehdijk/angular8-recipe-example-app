@@ -1,5 +1,26 @@
-<ng-container *ngFor="let recipe of recipes">
-  <div>{{recipe.name}}</div>
-  <div>{{recipe.description}}</div>
-</ng-container>
+<ngb-accordion [closeOthers]="true">
+  <ng-container *ngFor="let recipe of recipes" >
+    <ngb-panel id="{{recipe.id}}" >
+      <ng-template ngbPanelTitle  >
+        <div class="d-flex" style="margin:-5%">
+        <img src={{recipe.thumbImageUrl}} (error)="imageNotFound($event)" class="rounded float-left mr-2" 
+        style="width:15vw;max-width:80px;">
+        <div class="d-flex flex-column justify-content-center"> {{recipe.name}}</div>
+        </div>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <div class="row text-secondary">
+          <div class="col-sm-6"><h6>Cooking time: {{recipe.cookingTime}} min</h6></div>
+          <div class="col-sm-6"><h6>Serves: {{recipe.serves}} person</h6></div>
+        </div>
+        <div class="row">
+          <div class="col text-justify">
+            <h5>Directions</h5>{{recipe.direction | slice : 1:200}}...
+            <a routerLink="/detail/{{recipe.id}}">more</a>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-panel>
+  </ng-container>
+</ngb-accordion>
 
