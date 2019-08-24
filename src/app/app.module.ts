@@ -9,6 +9,7 @@ import { RecipesComponent } from './recipes/recipes.component';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AboutComponent } from './about/about.component';
+import { DetailComponent } from './detail/detail.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { AboutComponent } from './about/about.component';
     MenuComponent,
     RecipesComponent,
     AddRecipeComponent,
-    AboutComponent
+    AboutComponent,
+    DetailComponent
   ],
   imports: [
     BrowserModule,

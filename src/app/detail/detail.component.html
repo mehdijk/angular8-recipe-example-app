@@ -1,0 +1,19 @@
+<ng-container *ngIf="recipe; else elseTemplate">
+    <h2>{{recipe.name}}</h2>
+    <img src={{recipe.imageUrl}} 
+        (error)="imageNotFound($event)" class="rounded mg-fluid" width="100%"
+        style="max-width:800px;">
+    <div class="row text-secondary">
+        <div class="col-sm-6"><h6>Cooking time: {{recipe.cookingTime}} min</h6></div>
+        <div class="col-sm-6"><h6>Serves: {{recipe.serves}} person</h6></div>
+    </div>
+      <div class="row">
+        <div class="col text-justify">
+          <h5>Directions</h5>{{recipe.direction}}
+        </div>
+      </div>
+</ng-container>
+<ng-template #elseTemplate>
+   Loading...
+</ng-template>
+

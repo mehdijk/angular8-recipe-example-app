@@ -10,6 +10,7 @@ import { Recipe } from '../model/recipe.model';
 export class RecipeService {
 
   myDb:NgxIndexedDB;
+  private storeName='recipe';
 
   @Output() recipes=new EventEmitter<Recipe[]>();
   
@@ -25,7 +26,7 @@ export class RecipeService {
 
   createDb(){
     this.myDb.openDatabase(1, evt => {
-      let objectStore = evt.currentTarget.result.createObjectStore('recipe',
+      let objectStore = evt.currentTarget.result.createObjectStore(this.storeName,
       { keyPath: 'id', autoIncrement: true });
       objectStore.createIndex('name', 'name', { unique: true });
       objectStore.createIndex('direction', 'direction', { unique: false });
@@ -52,7 +53,7 @@ export class RecipeService {
 
   getAll(){
     this.myDb.openDatabase(1).then(x=>{
-      this.myDb.getAll('recipe').then(
+      this.myDb.getAll(this.storeName).then(
         res=>{this.recipes.emit(res)}
       )
     })
@@ -60,7 +61,15 @@ export class RecipeService {
 
   addRecipe(recipe:Recipe){
     this.myDb.openDatabase(1).then(x=>{
-      this.myDb.add('recipe',recipe);
+      this.myDb.add(this.storeName,recipe);
+    });
+  }
+
+  getRecipeById(id:number){
+    this.openDatabase().then(x=>{
+      this.myDb.getByKey(this.storeName,+id).then(
+        res=>{this.recipes.emit(res)}
+      )
     });
   }
 }
