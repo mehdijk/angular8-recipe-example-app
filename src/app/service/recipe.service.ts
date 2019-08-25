@@ -61,7 +61,7 @@ export class RecipeService {
 
   addRecipe(recipe:Recipe){
     this.myDb.openDatabase(1).then(x=>{
-      this.myDb.add(this.storeName,recipe);
+      this.myDb.add(this.storeName,recipe)
     });
   }
 

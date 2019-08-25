@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipeService } from "../service/recipe.service";
 import { Recipe } from '../model/recipe.model';
-import {Pipe, PipeTransform} from '@angular/core';
 
 @Component({
   selector: 'app-recipes',

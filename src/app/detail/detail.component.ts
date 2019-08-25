@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../model/recipe.model';
 import { RecipeService } from '../service/recipe.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-detail',
@@ -12,7 +12,8 @@ export class DetailComponent implements OnInit {
 
   recipe:Recipe
   constructor(private service:RecipeService,
-              private route:ActivatedRoute) { }
+              private route:ActivatedRoute,
+              private router:Router) { }
 
   ngOnInit() {
     const id:number=this.route.snapshot.params.id;
@@ -24,6 +25,10 @@ export class DetailComponent implements OnInit {
 
   imageNotFound(event){
     event.target.src="assets/img/no-image.png"
+  }
+
+  back(){
+    this.router.navigate(['home']);
   }
 
 }

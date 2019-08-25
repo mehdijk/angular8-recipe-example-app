@@ -57,7 +57,11 @@
         <input type="url" formControlName="thumbImageUrl" class="form-control" id="thumbImageUrl"  name="thumbImageUrl" >
     </div> 
     <button type="submit" class="btn btn-primary">Add</button>
+    <button type="button" class="btn btn-primary ml-2" (click)="cancel()">Cancel</button>
     </form>
+    <ngb-toast class="bg-success text-light" *ngIf="showToast" [autohide]="true" (hide)="showToast=false" [delay]=1000>
+            A recipe was added!
+    </ngb-toast>
 </div>
 </div>
 </div>

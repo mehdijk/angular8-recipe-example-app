@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl,Validators } from '@angular/forms';
 import { Recipe } from '../model/recipe.model';
 import { RecipeService } from '../service/recipe.service';
+import { NgbToast } from "@ng-bootstrap/ng-bootstrap";
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-recipe',
@@ -11,6 +13,7 @@ import { RecipeService } from '../service/recipe.service';
 export class AddRecipeComponent implements OnInit {
 
   isSubmitted=false;
+  showToast=false;
 
   recipeForm = new FormGroup({
     name :new FormControl('',[Validators.required,Validators.maxLength(80)]),
@@ -26,7 +29,8 @@ export class AddRecipeComponent implements OnInit {
   get cookingTime() { return this.recipeForm.get('cookingTime'); }
 
 
-  constructor(private service:RecipeService) { }
+  constructor(private service:RecipeService,
+              private router:Router) { }
 
   ngOnInit() {
   }
@@ -39,6 +43,14 @@ export class AddRecipeComponent implements OnInit {
     const recipe=new Recipe();
     Object.assign(recipe,this.recipeForm.value);
     this.service.addRecipe(recipe);
+    this.showToast=true;
+    setTimeout(() => {
+      this.router.navigate(['home']);
+    }, 1000);
+  }
+
+  cancel(){
+    this.router.navigate(['home']);
   }
 
 }
