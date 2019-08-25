@@ -18,7 +18,7 @@
         <label for="direction">Direction*</label>
         <textarea formControlName="direction" class="form-control" rows="5" id="direction"  name="direction" required></textarea>
         <div *ngIf="direction.invalid && (direction.dirty || direction.touched || isSubmitted)" class="alert alert-danger">
-            <div *ngIf="name.errors.required">
+            <div *ngIf="direction.errors.required">
                 Direction is required.
             </div>
             <div *ngIf="direction.errors.maxlength">
@@ -56,11 +56,12 @@
         <label for="thumbImageUrl">Thumb image URL</label>
         <input type="url" formControlName="thumbImageUrl" class="form-control" id="thumbImageUrl"  name="thumbImageUrl" >
     </div> 
-    <button type="submit" class="btn btn-primary">Add</button>
+    <button type="submit" class="btn btn-primary" *ngIf="!editId">Add</button>
+    <button type="submit" class="btn btn-primary" *ngIf="editId">Update</button>
     <button type="button" class="btn btn-primary ml-2" (click)="cancel()">Cancel</button>
     </form>
-    <ngb-toast class="bg-success text-light" *ngIf="showToast" [autohide]="true" (hide)="showToast=false" [delay]=1000>
-            A recipe was added!
+    <ngb-toast class="bg-success text-light" *ngIf="toastMessage" [autohide]="true" (hide)="showToast=false" [delay]=1000>
+            {{toastMessage}}
     </ngb-toast>
 </div>
 </div>

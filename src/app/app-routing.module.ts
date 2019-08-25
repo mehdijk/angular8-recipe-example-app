@@ -12,6 +12,7 @@ const routes: Routes = [
   {path:'add',component:AddRecipeComponent},
   {path:'about', component:AboutComponent},
   {path:'detail/:id', component:DetailComponent},
+  {path:'edit/:id', component:AddRecipeComponent},
 ];
 
 @NgModule({

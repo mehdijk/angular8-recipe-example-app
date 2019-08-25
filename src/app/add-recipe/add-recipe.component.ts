@@ -13,7 +13,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AddRecipeComponent implements OnInit {
 
   isSubmitted=false;
-  showToast=false;
+  toastMessage;
+  editId=this.route.snapshot.params.id;
 
   recipeForm = new FormGroup({
     name :new FormControl('',[Validators.required,Validators.maxLength(80)]),
@@ -30,9 +31,24 @@ export class AddRecipeComponent implements OnInit {
 
 
   constructor(private service:RecipeService,
-              private router:Router) { }
+              private router:Router,
+              private route:ActivatedRoute) { }
 
   ngOnInit() {
+    this.loadEditRecipe();
+  }
+
+  loadEditRecipe(){
+    if (!this.editId) return;
+    this.service.getRecipeById(this.editId);
+    this.service.recipes.subscribe(recipe=>{
+      this.recipeForm.controls["name"].setValue(recipe.name);
+      this.recipeForm.controls["direction"].setValue(recipe.direction);
+      this.recipeForm.controls["imageUrl"].setValue(recipe.imageUrl);
+      this.recipeForm.controls["thumbImageUrl"].setValue(recipe.thumbImageUrl);
+      this.recipeForm.controls["cookingTime"].setValue(recipe.cookingTime);
+      this.recipeForm.controls["serves"].setValue(recipe.serves);
+    });
   }
 
   onSubmit() {
@@ -42,15 +58,21 @@ export class AddRecipeComponent implements OnInit {
     }
     const recipe=new Recipe();
     Object.assign(recipe,this.recipeForm.value);
-    this.service.addRecipe(recipe);
-    this.showToast=true;
-    setTimeout(() => {
-      this.router.navigate(['home']);
-    }, 1000);
+    if (this.editId) {
+      recipe.id=+this.editId;
+      this.service.update(recipe);
+      this.toastMessage="The recipe is edited successfully!";
+    } else {
+      this.service.addRecipe(recipe);
+      this.toastMessage="A recipe is added!";
+    }
+      setTimeout(() => {
+      this.router.navigate(['/home']);
+      }, 1000);
   }
 
   cancel(){
-    this.router.navigate(['home']);
+    this.router.navigate(['/home']);
   }
 
 }

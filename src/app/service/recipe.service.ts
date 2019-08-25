@@ -2,6 +2,7 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 import { NgxIndexedDB } from 'ngx-indexed-db';
 import { Observable, of,from } from 'rxjs';
 import { Recipe } from '../model/recipe.model';
+import { error } from '@angular/compiler/src/util';
 
 
 @Injectable({
@@ -12,7 +13,7 @@ export class RecipeService {
   myDb:NgxIndexedDB;
   private storeName='recipe';
 
-  @Output() recipes=new EventEmitter<Recipe[]>();
+  @Output() recipes=new EventEmitter<any>();
   
 
   constructor() {
@@ -68,8 +69,21 @@ export class RecipeService {
   getRecipeById(id:number){
     this.openDatabase().then(x=>{
       this.myDb.getByKey(this.storeName,+id).then(
-        res=>{this.recipes.emit(res)}
+        recipe=>{
+          this.recipes.emit(recipe)}
       )
+    });
+  }
+
+  delete(id:number){
+    this.openDatabase().then(x=>{
+      this.myDb.delete(this.storeName,+id);
+    });
+  }
+
+  update(recipe:Recipe){
+    this.openDatabase().then(x=>{
+      this.myDb.update(this.storeName,recipe);
     });
   }
 }
