@@ -1,7 +1,13 @@
 <div class="container">
 <div class="row">
 <div class="col-md-8 offset-md-2">
-    <h2>Add a recipe</h2>
+    <ng-container *ngIf="editId; else elseTemplate">
+        <h2>Edit a recipe</h2>
+    </ng-container>
+    <ng-template #elseTemplate>
+        <h2>Add a recipe</h2>
+    </ng-template>
+    
     <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()" >
     <div class="form-group">
         <label for="name">Name*</label>
