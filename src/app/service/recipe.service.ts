@@ -106,7 +106,7 @@ export class RecipeService {
         name:'A food without image',
         direction:'This is the directions for cooking. A part of direction is shown here and the user can read the complete description in the detail page. If the image or thumbnail is not specified or unavailable, a default image will be shown.',
         imageUrl:'',
-        thumbImageUrl:'a wrong address',
+        thumbImageUrl:'https://images.pexels.com/photos/34',
         cookingTime:180,
         serves:4
         },

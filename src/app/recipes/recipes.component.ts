@@ -13,7 +13,7 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class RecipesComponent implements OnInit{
 
   recipes:Recipe[];
-  //deleteID:number;
+  private numberOfTry=0;
 
   constructor(private service:RecipeService,
               private router:Router,
@@ -21,8 +21,19 @@ export class RecipesComponent implements OnInit{
    }
 
   ngOnInit() {
+   this.getRecipes()
+  }
+  getRecipes(){
+    this.numberOfTry++;
     this.service.getAll();
-    this.service.recipes.subscribe(res=>this.recipes=res);
+    this.service.recipes.subscribe(res=>{
+      this.recipes=res;
+      if (this.recipes.length==0 && this.numberOfTry<5) {
+        setTimeout(() => {
+          this.getRecipes();
+        }, 1000);
+      }},
+      );
   }
 
   imageNotFound(event){
