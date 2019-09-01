@@ -22,7 +22,6 @@ export class RecipeService {
    }
 
   openDatabase():Promise<any>{
-    // this.myDb.dbWrapper.validateStoreName(this.storeName)
     return this.myDb.openDatabase(1);
   }
 
@@ -89,8 +88,8 @@ export class RecipeService {
     name:'Pizza Margherita',
     direction:'Preheat the wood-fired pizza oven at high temperature for 4 hours before cooking.Alternatively, a refractory stone can be used, preheated in the domestic oven. It is preferable to heat it for an hour, at 260 ° C, before baking. '+
               'Put the tomatoes in a blender and treat them until they blend together. Season with salt. Sprinkle the pizza scoop with flour. With a rolling pin, spread the dough until you get a thin circle of 10 inches. Using a spoon, put ¼ of the sauce on the dough and distribute, leaving a 1-inch edge. Cover the sauce with ¼ of mozzarella.',
-    imageUrl:'http://www.fnstatic.it/images/content/recipe/ccev103-margherita-pizza-s4x3-jpg_3.jpeg',
-    thumbImageUrl:'http://www.fnstatic.it/images/small/recipe/ccev103-margherita-pizza-s4x3-jpg_3.jpeg',
+    imageUrl:'https://images.pexels.com/photos/2232/vegetables-italian-pizza-restaurant.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    thumbImageUrl:'https://images.pexels.com/photos/2232/vegetables-italian-pizza-restaurant.jpg?auto=compress&cs=tinysrgb&dpr=2&h=75&w=126',
     cookingTime:30,
     serves:2
     },
@@ -98,8 +97,8 @@ export class RecipeService {
       name:'Lasagne Bolognese',
       direction:'Add the first layer of lasagna and in order, cover with ragù, about 3 ladlefuls of béchamel and a generous sprinkling of Parmesan. Repeat the same procedure until you reach the top of the pan. Make sure the lasagna is immersed in the sauce.'+
                 'When you finish putting the ingredients in layers, cover the lasagna with a final ladle of ragù and a little béchamel, add a few strips of butter and finish with a sprinkling of Parmesan.',
-      imageUrl:'http://www.fnstatic.it/images/content/recipe/ccev108-lasagne-alla-bolognese-s4x3-jpg_3.jpeg',
-      thumbImageUrl:'http://www.fnstatic.it/images/small/recipe/ccev108-lasagne-alla-bolognese-s4x3-jpg_3.jpeg',
+      imageUrl:'https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+      thumbImageUrl:'https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=75&w=126',
       cookingTime:180,
       serves:4
       },
